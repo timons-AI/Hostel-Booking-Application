@@ -10,12 +10,12 @@ export interface RouteProps {
 export const AppRoutes: RouteProps[] = [
   {
     title: "Home",
-    path: "/",
+    path: "",
     element: <HomePage />,
   },
   {
     title: "About",
-    path: "/about",
+    path: "about",
     element: <AboutPage />,
   },
 ];

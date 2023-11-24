@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-import { AppRoutes } from "../../routes.js";
-import { RouteProps } from "../../routes.js";
+import { AppRoutes } from "../../routes.tsx";
+import { RouteProps } from "../../routes.tsx";
 
 const Router = () => {
   const pageRoutes = AppRoutes.map(({ path, title, element }: RouteProps) => {
