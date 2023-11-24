@@ -1,6 +1,7 @@
 import HomePage from "./src/pages/home";
 import AboutPage from "./src/pages/about";
 import ListingPage from "./src/pages/list";
+import ListingDetailPage from "./src/pages/listingdetail";
 
 export interface RouteProps {
   title: string;
@@ -21,7 +22,12 @@ export const AppRoutes: RouteProps[] = [
   },
   {
     title: "List",
-    path: "list",
+    path: "listings",
     element: <ListingPage />,
+  },
+  {
+    title: "ListingDetail",
+    path: "listings/:id",
+    element: <ListingDetailPage />,
   },
 ];

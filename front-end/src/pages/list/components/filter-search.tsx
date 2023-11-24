@@ -1,4 +1,11 @@
+import React, { useState } from "react";
 export default function FilterSection() {
+  const [filters, setFilters] = useState({
+    category: "all",
+    condition: "all",
+    price: "all",
+    location: "all",
+  });
   return (
     <div className=" w-full border rounded-md flex flex-col p-3">
       <p className=" text-3xl font-bold">Search and Filter</p>
@@ -30,7 +37,7 @@ export default function FilterSection() {
         </div>
         <div className="flex flex-col mt-2">
           <label className="text-lg font-semibold">Condition</label>
-          <select className="border rounded-md p-2">
+          <select className="border rounded-md p-2" defaultValue="all">
             <option value="all">All</option>
             <option value="new">New</option>
             <option value="used">Used</option>

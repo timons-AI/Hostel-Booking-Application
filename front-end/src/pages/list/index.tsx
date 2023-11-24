@@ -108,11 +108,11 @@ export default function ListingPage() {
         <main className="mx-auto max-w-2xl px-4 lg:max-w-7xl lg:px-8">
           <div className="border-b border-gray-200 pt-24 pb-10">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900">
-              New Arrivals
+              View All available listings
             </h1>
             <p className="mt-4 text-base text-gray-500">
-              Checkout out the latest release of Basic Tees, new and improved
-              with four openings!
+              Below are all the listings available on the platform. You can
+              search and filter through them.
             </p>
           </div>
 
@@ -147,7 +147,7 @@ export default function ListingPage() {
                 listings
               </h2>
 
-              <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8 xl:grid-cols-3">
+              <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8 ">
                 {listings.map((listing) => (
                   <div
                     key={listing.id}
@@ -160,18 +160,28 @@ export default function ListingPage() {
                         className=" h-full w-full object-cover object-center"
                       />
                     </div>
-                    <div className="flex w-full  flex-col  h-full p-3">
-                      <p className="text-lg font-semibold">{listing.name}</p>
-                      <p className="text-sm text-gray-500 overflow-hidden ">
-                        {listing.description}
-                      </p>
-
-                      <div className=" flex w-full gap-4">
-                        <button className="bg-blue-500 text-white rounded-md p-2 mt-2">
-                          View
-                        </button>
-                        <button className="bg-blue-500 text-white rounded-md p-2 mt-2">
-                          +
+                    <div className="flex w-full">
+                      <div className="flex w-full  flex-col  h-full p-3">
+                        <p className="text-lg font-semibold">{listing.name}</p>
+                        <p className="text-sm text-gray-500 overflow-hidden ">
+                          {listing.description}
+                        </p>
+                      </div>
+                      <div className=" flex flex-col border-l justify-between">
+                        <div className="flex p-2 border-b gap-2">
+                          <p className="text-sm font-semibold">Excellent</p>
+                          <p className="text-xs text-gray-500 rounded-full p-1 border w-fit">
+                            8.5
+                          </p>
+                        </div>
+                        <div className="flex flex-col px-2 ">
+                          <p className="text-md font-semibold">Shs 300,000</p>
+                          <p className="text-xs text-gray-500">
+                            includes taxes and fees
+                          </p>
+                        </div>
+                        <button className="bg-sky-800 text-white bottom rounded-sm m-2 text-xs p-2">
+                          See avaibility
                         </button>
                       </div>
                     </div>
