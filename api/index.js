@@ -21,6 +21,10 @@ mongoose.connection.on("connected", () => {
   console.log("Mongoose connection is connected");
 });
 
+app.get("/", (req, res) => {
+  res.send("Hello my name is Tuan");
+});
+
 app.listen(3000, () => {
   connect();
   console.log("Server is running on port 3000.");
