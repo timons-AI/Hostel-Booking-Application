@@ -1,6 +1,8 @@
-import useEmblaCarousel from "embla-carousel-react";
+import { EmblaOptionsType } from "embla-carousel-react";
 
 import { StarIcon } from "@heroicons/react/20/solid";
+
+import EmblaCarousel from "../../components/EmblaCarousel";
 
 const product = {
   name: "Basic Tee 6-Pack",
@@ -100,7 +102,13 @@ function classNames(...classes: any[]) {
 }
 
 export default function ListingDetailPage() {
-  const [emblaRef] = useEmblaCarousel();
+  const OPTIONS: EmblaOptionsType = { dragFree: true };
+  const SLIDE_COUNT = 5;
+  const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
+
+  const images: string[] = product.images.map((image) => image.src);
+
+  const imageByIndex = (index: number): string => images[index % images.length];
 
   return (
     <div className="bg-white">
@@ -146,23 +154,23 @@ export default function ListingDetailPage() {
         </nav>
 
         {/* Image gallery */}
-        <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
-          <div className="aspect-w-3 aspect-h-4 hidden overflow-hidden rounded-lg lg:block">
+        <div className="mx-auto mt-6 max-w-2xl sm:px-6 md:grid md:max-w-7xl md:grid-cols-3 md:gap-x-8 md:px-8 hidden md:block">
+          <div className="aspect-w-3 aspect-h-4 hidden overflow-hidden rounded-md md:block">
             <img
               src={product.images[0].src}
               alt={product.images[0].alt}
               className="h-full w-full object-cover object-center"
             />
           </div>
-          <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
-            <div className="aspect-w-3 aspect-h-2 overflow-hidden rounded-lg">
+          <div className="hidden md:grid md:grid-cols-1 md:gap-y-8">
+            <div className="aspect-w-3 aspect-h-2 overflow-hidden rounded-md">
               <img
                 src={product.images[1].src}
                 alt={product.images[1].alt}
                 className="h-full w-full object-cover object-center"
               />
             </div>
-            <div className="aspect-w-3 aspect-h-2 overflow-hidden rounded-lg">
+            <div className="aspect-w-3 aspect-h-2 overflow-hidden rounded-md">
               <img
                 src={product.images[2].src}
                 alt={product.images[2].alt}
@@ -170,7 +178,7 @@ export default function ListingDetailPage() {
               />
             </div>
           </div>
-          <div className="aspect-w-4 aspect-h-5 sm:overflow-hidden sm:rounded-lg lg:aspect-w-3 lg:aspect-h-4">
+          <div className="aspect-w-4 aspect-h-5 sm:overflow-hidden sm:rounded-md md:aspect-w-3 md:aspect-h-4">
             <img
               src={product.images[3].src}
               alt={product.images[3].alt}
@@ -179,15 +187,16 @@ export default function ListingDetailPage() {
           </div>
         </div>
 
-        {/* carousel */}
-        <div className="embla w-full h-60 rounded-md border " ref={emblaRef}>
-          <div className="embla__container items-center justify-center p-2 ">
-            <div className="embla__slide bg-slate-500 ">Slide 1</div>
-            <div className="embla__slide bg-slate-400 w-full h-full">
-              Slide 2
-            </div>
-            <div className="embla__slide">Slide 3</div>
-          </div>
+        {/* Image selector  for mobile */}
+        <div className=" w-full border p-4 md:hidden flex flex-col items-center">
+          <EmblaCarousel
+            slides={SLIDES}
+            options={OPTIONS}
+            imageByIndex={imageByIndex}
+          />
+          <p className=" text-sm text-zinc-600 p-4">
+            Swipe right to view images
+          </p>
         </div>
 
         {/* Product info */}

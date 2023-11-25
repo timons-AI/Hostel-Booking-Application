@@ -45,7 +45,11 @@ const listings = [
       "https://images.unsplash.com/photo-1561124928-eda0f74e3847?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGhvc3RlbHxlbnwwfHwwfHx8MA%3D%3D",
     imageAlt: "Front of plain black t-shirt.",
   },
-  // More listings...
+];
+
+const breadcrumbs = [
+  { id: 1, name: "Home", href: "/" },
+  { id: 2, name: "All Listings", href: "/listings" },
 ];
 
 export default function ListingPage() {
@@ -106,6 +110,36 @@ export default function ListingPage() {
         </Transition.Root>
 
         <main className="mx-auto max-w-2xl px-4 lg:max-w-7xl lg:px-8">
+          <nav aria-label="Breadcrumb ">
+            <ol
+              role="list"
+              className="mx-auto  flex max-w-2xl  pt-4 items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8"
+            >
+              {breadcrumbs.map((breadcrumb) => (
+                <li key={breadcrumb.id}>
+                  <div className="flex items-center">
+                    <a
+                      href={breadcrumb.href}
+                      className="mr-2 text-sm font-medium text-gray-900"
+                    >
+                      {breadcrumb.name}
+                    </a>
+                    <svg
+                      width={16}
+                      height={20}
+                      viewBox="0 0 16 20"
+                      fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true"
+                      className="h-5 w-4 text-gray-300"
+                    >
+                      <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
+                    </svg>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </nav>
           <div className="border-b border-gray-200 pt-24 pb-10">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900">
               View All available listings
