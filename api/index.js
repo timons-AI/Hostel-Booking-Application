@@ -1,6 +1,11 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import authRoute from "./routes/auth.js";
+import usersRoute from "./routes/users.js";
+import roomsRoute from "./routes/rooms.js";
+import hostelsRoute from "./routes/hostels.js";
+
 const app = express();
 dotenv.config();
 
@@ -21,9 +26,11 @@ mongoose.connection.on("connected", () => {
   console.log("Mongoose connection is connected");
 });
 
-app.get("/", (req, res) => {
-  res.send("Hello my name is Tuan");
-});
+// middlewares
+app.use("/api/auth", authRoute);
+app.use("/api/users", usersRoute);
+app.use("/api/rooms", roomsRoute);
+app.use("/api/hostels", hostelsRoute);
 
 app.listen(3000, () => {
   connect();
