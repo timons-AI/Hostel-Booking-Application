@@ -6,15 +6,16 @@ import {
   getHostels,
   updateHostel,
 } from "../controllers/hostel.js";
+import { verifyAdmin } from "../utils/verify-token.js";
 
 const router = express.Router();
 
 //CREATE
-router.post("/", createHostel);
+router.post("/", verifyAdmin, createHostel);
 //UPDATE
-router.put("/:id", updateHostel);
+router.put("/:id", verifyAdmin, updateHostel);
 //DELETE
-router.delete("/:id", deleteHostel);
+router.delete("/:id", verifyAdmin, deleteHostel);
 //GET
 router.get("/:id", getHostel);
 //GET ALL
