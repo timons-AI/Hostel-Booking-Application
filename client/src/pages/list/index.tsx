@@ -1,23 +1,9 @@
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-      require('@tailwindcss/aspect-ratio'),
-    ],
-  }
-  ```
-*/
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { PlusIcon } from "@heroicons/react/20/solid";
 import FilterSection from "./components/filter-search";
+import useFetch, { Data } from "../../hooks/useFetch";
 
 const listings = [
   {
@@ -54,6 +40,11 @@ const breadcrumbs = [
 
 export default function ListingPage() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const { datas, loading, error } = useFetch(
+    "http://localhost:3000/api/hostels"
+  );
+
+  const listings = datas && (datas.data as Data[]);
 
   return (
     <div className="bg-white">
@@ -182,45 +173,55 @@ export default function ListingPage() {
               </h2>
 
               <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8 ">
-                {listings.map((listing) => (
-                  <div
-                    key={listing.id}
-                    className=" rounded-md flex overflow-hidden  border h-48 w-full"
-                  >
-                    <div className="flex flex-col w-52 border-r ">
-                      <img
-                        src={listing.imageSrc}
-                        alt={listing.imageAlt}
-                        className=" h-full w-full object-cover object-center"
-                      />
-                    </div>
-                    <div className="flex w-full">
-                      <div className="flex w-full  flex-col  h-full p-3">
-                        <p className="text-lg font-semibold">{listing.name}</p>
-                        <p className="text-sm text-gray-500 overflow-hidden ">
-                          {listing.description}
-                        </p>
+                {listings ? (
+                  listings.map((listing) => (
+                    <div
+                      key={listing._id}
+                      className=" rounded-md flex overflow-hidden  border h-48 w-full"
+                    >
+                      <div className="flex flex-col w-52 border-r ">
+                        <img
+                          src={listing.photos[0]}
+                          alt={listing.name}
+                          className=" h-full w-full object-cover object-center"
+                        />
                       </div>
-                      <div className=" flex flex-col border-l justify-between">
-                        <div className="flex p-2 border-b gap-2">
-                          <p className="text-sm font-semibold">Excellent</p>
-                          <p className="text-xs text-gray-500 rounded-full p-1 border w-fit">
-                            8.5
+                      <div className="flex w-full">
+                        <div className="flex w-full  flex-col  h-full p-3">
+                          <p className="text-lg font-semibold">
+                            {listing.name}
+                          </p>
+                          <p className="text-sm text-gray-500 overflow-hidden ">
+                            {listing.description}
                           </p>
                         </div>
-                        <div className="flex flex-col px-2 ">
-                          <p className="text-md font-semibold">Shs 300,000</p>
-                          <p className="text-xs text-gray-500">
-                            includes taxes and fees
-                          </p>
+                        <div className=" flex flex-col border-l justify-between">
+                          <div className="flex p-2 border-b gap-2">
+                            <p className="text-sm font-semibold">Excellent</p>
+                            <p className="text-xs text-gray-500 rounded-full p-1 border w-fit">
+                              {listing.rating || <span>None </span>}
+                            </p>
+                          </div>
+                          <div className="flex flex-col px-2 ">
+                            <p className="text-md font-semibold">Shs 300,000</p>
+                            <p className="text-xs text-gray-500">
+                              includes taxes and fees
+                            </p>
+                          </div>
+                          <a href={`/listings/${listing._id}`}>
+                            <button className="bg-sky-800 text-white bottom rounded-sm m-2 text-xs p-2">
+                              See avaibility
+                            </button>
+                          </a>
                         </div>
-                        <button className="bg-sky-800 text-white bottom rounded-sm m-2 text-xs p-2">
-                          See avaibility
-                        </button>
                       </div>
                     </div>
+                  ))
+                ) : (
+                  <div className="flex justify-center items-center w-full h-full">
+                    <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
                   </div>
-                ))}
+                )}
               </div>
             </section>
           </div>

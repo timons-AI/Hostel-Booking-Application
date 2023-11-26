@@ -80,3 +80,26 @@ export const getHostels = async (req, res, next) => {
     next(error);
   }
 };
+
+export const countyByCity = async (req, res, next) => {
+  const cities = req.query.cities.split(",");
+  try {
+    const hostels = await Hostel.aggregate([
+      {
+        $match: { city: { $in: cities } },
+      },
+      {
+        $group: {
+          _id: "$city",
+          count: { $sum: 1 },
+        },
+      },
+    ]);
+    return res.status(200).json({
+      success: true,
+      data: hostels,
+    });
+  } catch (error) {
+    next(error);
+  }
+};

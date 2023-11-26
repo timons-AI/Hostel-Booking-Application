@@ -9,7 +9,6 @@ const HomePage: React.FC = () => {
     <div className="flex flex-col items-center justify-center w-full ">
       <Navbar />
       <HeroSection />
-
       <CategorySection />
       <FeaturedSection />
       <CallToAction />
