@@ -5,6 +5,10 @@ import TopMenu from "../layouts/TopMenu";
 import Page1 from "../pages/Page1";
 import Page2 from "../pages/Page2";
 import Dashboard from "../pages/Dashboard";
+import Users from "../pages/Users";
+import Listings from "../pages/Listings";
+import ListingsCreate from "../pages/ListingsCreate";
+import UsersCreate from "../pages/UsersCreate";
 
 function Router() {
   const routes = [
@@ -15,6 +19,22 @@ function Router() {
         {
           path: "/dashboard",
           element: <Dashboard />,
+        },
+        {
+          path: "/users",
+          element: <Users />,
+        },
+        {
+          path: "/listings",
+          element: <Listings />,
+        },
+        {
+          path: "/listings/create",
+          element: <ListingsCreate />,
+        },
+        {
+          path: "/users/create",
+          element: <UsersCreate />,
         },
         {
           path: "/",

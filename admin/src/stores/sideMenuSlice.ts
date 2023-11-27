@@ -23,13 +23,40 @@ const initialState: SideMenuState = {
     },
     {
       icon: "Users",
-      pathname: "/",
       title: "Users",
+      subMenu: [
+        {
+          icon: "User",
+          pathname: "/users",
+          title: "Users",
+          ignore: true,
+        },
+        {
+          icon: "Activity",
+          pathname: "/users/create",
+          title: "Create User",
+          ignore: true,
+        },
+      ],
     },
+
     {
-      icon: "Home",
-      pathname: "/page-2",
+      icon: "Box",
       title: "Listings",
+      subMenu: [
+        {
+          icon: "Building",
+          pathname: "/listings",
+          title: "Side Menu",
+          ignore: true,
+        },
+        {
+          icon: "Activity",
+          pathname: "/listings/create",
+          title: "Create Listing",
+          ignore: true,
+        },
+      ],
     },
   ],
 };
