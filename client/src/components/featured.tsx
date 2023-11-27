@@ -1,49 +1,5 @@
 import useFetch, { Data } from "../hooks/useFetch";
 
-// const hostel = [
-//   {
-//     id: 1,
-//     name: "Kampala Serena Hostel",
-//     location: "Bundibujo, Kampala",
-//     price: "$35 / per night",
-//     href: "#",
-//     imageSrc:
-//       "https://images.unsplash.com/photo-1551641506-ee5bf4cb45f1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D",
-//     imageAlt: " amazing hostel name.",
-//   },
-//   {
-//     id: 2,
-//     name: "Kampala Serena Hostel",
-//     location: "Bundibujo, Kampala",
-//     price: "$35 / per night",
-//     href: "#",
-//     imageSrc:
-//       "https://images.unsplash.com/photo-1573455494060-c5595004fb6c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fHw%3D",
-//     imageAlt: " amazing hostel name.",
-//   },
-//   {
-//     id: 3,
-//     name: "Kampala Serena Hostel",
-//     location: "Bundibujo, Kampala",
-//     price: "$35 / per night",
-//     href: "#",
-//     imageSrc:
-//       "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjJ8fGNpdHl8ZW58MHx8MHx8fDA%3D",
-//     imageAlt: " amazing hostel name.",
-//   },
-//   {
-//     id: 4,
-//     name: "Kampala Serena Hostel",
-//     location: "Bundibujo, Kampala",
-//     price: "$35 / per night",
-//     href: "#",
-//     imageSrc:
-//       "https://images.unsplash.com/photo-1551641506-ee5bf4cb45f1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D",
-//     imageAlt: " amazing hostel name.",
-//   },
-//   // More products...
-// ];
-
 export default function FeaturedSection() {
   const { datas, loading, error } = useFetch(
     "http://localhost:3000/api/hostels"

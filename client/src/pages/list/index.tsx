@@ -5,34 +5,6 @@ import { PlusIcon } from "@heroicons/react/20/solid";
 import FilterSection from "./components/filter-search";
 import useFetch, { Data } from "../../hooks/useFetch";
 
-const listings = [
-  {
-    id: 1,
-    name: "Basic Tee 8-Pack",
-    href: "#",
-    price: "$256",
-    description:
-      "Get the full lineup of our Basic Tees. Have a fresh shirt all week, and an extra for laundry day.",
-    options: "8 colors",
-    imageSrc:
-      "https://plus.unsplash.com/premium_photo-1680098057495-efa1413023f7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGhvc3RlbHxlbnwwfHwwfHx8MA%3D%3D",
-    imageAlt:
-      "Eight shirts arranged on table in black, olive, grey, blue, white, red, mustard, and green.",
-  },
-  {
-    id: 2,
-    name: "Basic Tee",
-    href: "#",
-    price: "$32",
-    description:
-      "Look like a visionary CEO and wear the same black t-shirt every day.",
-    options: "Black",
-    imageSrc:
-      "https://images.unsplash.com/photo-1561124928-eda0f74e3847?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGhvc3RlbHxlbnwwfHwwfHx8MA%3D%3D",
-    imageAlt: "Front of plain black t-shirt.",
-  },
-];
-
 const breadcrumbs = [
   { id: 1, name: "Home", href: "/" },
   { id: 2, name: "All Listings", href: "/listings" },
@@ -203,7 +175,9 @@ export default function ListingPage() {
                             </p>
                           </div>
                           <div className="flex flex-col px-2 ">
-                            <p className="text-md font-semibold">Shs 300,000</p>
+                            <p className="text-md font-semibold">
+                              Shs {listing.cheapestPrice}
+                            </p>
                             <p className="text-xs text-gray-500">
                               includes taxes and fees
                             </p>

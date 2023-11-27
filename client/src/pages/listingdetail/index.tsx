@@ -3,6 +3,8 @@ import { EmblaOptionsType } from "embla-carousel-react";
 import { StarIcon } from "@heroicons/react/20/solid";
 
 import EmblaCarousel from "../../components/EmblaCarousel";
+import useFetch, { Data } from "../../hooks/useFetch";
+import { useLocation } from "react-router-dom";
 
 const product = {
   name: "Basic Tee 6-Pack",
@@ -102,14 +104,45 @@ function classNames(...classes: any[]) {
 }
 
 export default function ListingDetailPage() {
+  const location = useLocation();
+  const path = location.pathname.split("/")[2];
+
+  const { datas, loading, error } = useFetch(
+    `http://localhost:3000/api/hostels/${path}`
+  );
+  // @ts-ignore
+  const product: Data = datas && datas.data;
+
+  if (loading)
+    return (
+      <div className="bg-white h-screen flex justify-center items-center">
+        <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+          Loading...
+        </h1>
+      </div>
+    );
+
+  if (!product || error)
+    return (
+      <div className="bg-white h-screen flex justify-center items-center">
+        <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+          Not found please go back ...
+        </h1>
+      </div>
+    );
+
   const OPTIONS: EmblaOptionsType = { dragFree: true };
   const SLIDE_COUNT = 5;
   const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
 
-  const images: string[] = product.images.map((image) => image.src);
+  const images: string[] = product && product.photos.map((image) => image);
 
   const imageByIndex = (index: number): string => images[index % images.length];
-
+  // add breadcrumbs
+  const breadcrumbs = [
+    { id: 1, name: "Home", href: "/" },
+    { id: 2, name: "All Listings", href: "/listings" },
+  ];
   return (
     <div className="bg-white">
       <main className="pt-10 sm:pt-16">
@@ -118,7 +151,7 @@ export default function ListingDetailPage() {
             role="list"
             className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8"
           >
-            {product.breadcrumbs.map((breadcrumb) => (
+            {breadcrumbs.map((breadcrumb) => (
               <li key={breadcrumb.id}>
                 <div className="flex items-center">
                   <a
@@ -143,7 +176,7 @@ export default function ListingDetailPage() {
             ))}
             <li className="text-sm">
               <a
-                href={product.href}
+                href={`/listings/${product._id}`}
                 aria-current="page"
                 className="font-medium text-gray-500 hover:text-gray-600"
               >
@@ -157,38 +190,38 @@ export default function ListingDetailPage() {
         <div className="mx-auto mt-6 max-w-2xl sm:px-6 md:grid md:max-w-7xl md:grid-cols-3 md:gap-x-8 md:px-8 hidden md:block">
           <div className="aspect-w-3 aspect-h-4 hidden overflow-hidden rounded-md md:block">
             <img
-              src={product.images[0].src}
-              alt={product.images[0].alt}
+              src={product.photos[0]}
+              alt={product.photos[0]}
               className="h-full w-full object-cover object-center"
             />
           </div>
           <div className="hidden md:grid md:grid-cols-1 md:gap-y-8">
             <div className="aspect-w-3 aspect-h-2 overflow-hidden rounded-md">
               <img
-                src={product.images[1].src}
-                alt={product.images[1].alt}
+                src={product.photos[1]}
+                alt={product.photos[1]}
                 className="h-full w-full object-cover object-center"
               />
             </div>
             <div className="aspect-w-3 aspect-h-2 overflow-hidden rounded-md">
               <img
-                src={product.images[2].src}
-                alt={product.images[2].alt}
+                src={product.photos[2]}
+                alt={product.photos[2]}
                 className="h-full w-full object-cover object-center"
               />
             </div>
           </div>
           <div className="aspect-w-4 aspect-h-5 sm:overflow-hidden sm:rounded-md md:aspect-w-3 md:aspect-h-4">
             <img
-              src={product.images[3].src}
-              alt={product.images[3].alt}
+              src={product.photos[3]}
+              alt={product.photos[3]}
               className="h-full w-full object-cover object-center"
             />
           </div>
         </div>
 
         {/* Image selector  for mobile */}
-        <div className=" w-full border p-4 md:hidden flex flex-col items-center">
+        <div className=" w-full border p-4 md:hidden flex flex-col items-center h-[34rem] overflow-hidden">
           <EmblaCarousel
             slides={SLIDES}
             options={OPTIONS}
@@ -211,7 +244,7 @@ export default function ListingDetailPage() {
           <div className="mt-4 lg:row-span-3 lg:mt-0">
             <h2 className="sr-only">Product information</h2>
             <p className="text-3xl tracking-tight text-gray-900">
-              {product.price}
+              {product.cheapestPrice}
             </p>
 
             {/* Reviews */}
@@ -223,7 +256,7 @@ export default function ListingDetailPage() {
                     <StarIcon
                       key={rating}
                       className={classNames(
-                        reviews.average > rating
+                        product.rating > rating
                           ? "text-gray-900"
                           : "text-gray-200",
                         "h-5 w-5 flex-shrink-0"
@@ -232,7 +265,7 @@ export default function ListingDetailPage() {
                     />
                   ))}
                 </div>
-                <p className="sr-only">{reviews.average} out of 5 stars</p>
+                <p className="sr-only">{product.rating} out of 5 stars</p>
                 <a
                   href={reviews.href}
                   className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500"
@@ -267,11 +300,27 @@ export default function ListingDetailPage() {
 
               <div className="mt-4">
                 <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
-                  {product.highlights.map((highlight) => (
-                    <li key={highlight} className="text-gray-400">
-                      <span className="text-gray-600">{highlight}</span>
-                    </li>
-                  ))}
+                  <li className="text-gray-400">
+                    <span className="text-gray-600">{product.distance}m</span>
+                    <span className=" text-gray-600">
+                      {" "}
+                      from the city center
+                    </span>
+                  </li>
+
+                  <li className="text-gray-400">
+                    <span className="text-gray-600 font-bold">
+                      Rooms Available:{" "}
+                    </span>
+                    <span className="text-gray-600">{product.rooms}</span>
+                    <span className=" text-gray-600"> </span>
+                  </li>
+                  <li className="text-gray-400">
+                    <span className="text-gray-600">
+                      Shs.{product.cheapestPrice}
+                    </span>
+                    <span className=" text-gray-600"> per month</span>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -285,7 +334,10 @@ export default function ListingDetailPage() {
               </h2>
 
               <div className="mt-4 space-y-6">
-                <p className="text-sm text-gray-600">{product.details}</p>
+                <p className="text-sm text-gray-600">
+                  Address: {product.address}
+                </p>
+                <p className="text-sm text-gray-600">Type: {product.type}</p>
               </div>
             </section>
           </div>

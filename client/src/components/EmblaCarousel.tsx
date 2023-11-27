@@ -32,20 +32,26 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   }, [emblaApi, onScroll]);
 
   return (
-    <div className="embla">
-      <div className="embla__viewport rounded-md" ref={emblaRef}>
+    <div className="embla ">
+      <div className="embla__viewport rounded-md w-full h-full" ref={emblaRef}>
         <div className="embla__container ">
           {slides.map((index) => (
-            <div className="embla__slide" key={index}>
-              <div className="embla__slide__number">
-                <span>{index + 1}</span>
-              </div>
+            <div className="embla__slide w-full h-full gap-2" key={index}>
               <img
-                className="embla__slide__img rounded-md"
+                className="embla__slide__img aspect-w-3 aspect-h-2 overflow-hidden rounded-md"
                 src={imageByIndex(index)}
                 alt="Your alt text"
               />
             </div>
+            // <div className="embla__slide" key={index}>
+            //   <div className="embla__slide__img aspect-w-3 aspect-h-2 overflow-hidden rounded-md">
+            //     <img
+            //       src={imageByIndex(index)}
+            //       alt={`Slide ${index + 1}`}
+            //       className="h-full w-full object-cover object-center"
+            //     />
+            //   </div>
+            // </div>
           ))}
         </div>
       </div>
