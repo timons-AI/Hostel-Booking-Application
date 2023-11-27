@@ -28,7 +28,7 @@ const initialState: SideMenuState = {
         {
           icon: "User",
           pathname: "/users",
-          title: "Users",
+          title: "View Users",
           ignore: true,
         },
         {
@@ -47,7 +47,7 @@ const initialState: SideMenuState = {
         {
           icon: "Building",
           pathname: "/listings",
-          title: "Side Menu",
+          title: "View Listings",
           ignore: true,
         },
         {
