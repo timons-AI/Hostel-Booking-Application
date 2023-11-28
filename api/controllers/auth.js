@@ -61,7 +61,12 @@ export const login = async (req, res, next) => {
     }
 
     const accessToken = jwt.sign(
-      { id: user._id, isAdmin: user.isAdmin },
+      {
+        id: user._id,
+        username: user.username,
+        email: user.email,
+        isAdmin: user.isAdmin,
+      },
       process.env.JWT_SECRET,
       { expiresIn: "3d" }
     );
@@ -78,4 +83,12 @@ export const login = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+};
+
+export const getProfile = (req, res, next) => {
+  const { accessToken } = req.cookies;
+  if (!accessToken)
+    return res.status(401).json({ error: "You are not authenticated" });
+  const decoded = jwt.verify(accessToken, process.env.JWT_SECRET);
+  res.status(200).json(decoded);
 };

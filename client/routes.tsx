@@ -4,6 +4,7 @@ import ListingPage from "./src/pages/list";
 import ListingDetailPage from "./src/pages/listingdetail";
 import Login from "./src/pages/login";
 import Register from "./src/pages/register";
+import Dashboard from "./src/pages/dashboard";
 
 export interface RouteProps {
   title: string;
@@ -41,5 +42,15 @@ export const AppRoutes: RouteProps[] = [
     title: "Register",
     path: "register",
     element: <Register />,
+  },
+  {
+    title: "404",
+    path: "*",
+    element: <h1>404</h1>,
+  },
+  {
+    title: "Dashboard",
+    path: "dashboard",
+    element: <Dashboard />,
   },
 ];

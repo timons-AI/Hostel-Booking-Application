@@ -6,18 +6,20 @@ import {
   updateUser,
 } from "../controllers/user.js";
 import { verifyAdmin, verifyToken, verifyUser } from "../utils/verify-token.js";
+import { getProfile } from "../controllers/auth.js";
 
 const router = express.Router();
 
 // //CHECK AUTHENTICATION
 
-// router.get("/checkauthentication", verifyToken, (req, res, next) => {
-//   res.status(200).json({
-//     success: true,
-//     data: req.user,
-//   });
-// });
+router.get("/checkauthentication", verifyToken, (req, res, next) => {
+  res.status(200).json({
+    success: true,
+    data: req.user,
+  });
+});
 
+router.get("/profile", verifyToken);
 // //CHECK USER
 // router.get("/checkuser/:id", verifyUser, (req, res, next) => {
 //   res.status(200).json({

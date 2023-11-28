@@ -45,6 +45,10 @@ const HostelSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  // user IDs of users who have booked this hostel
+  bookings: {
+    type: [String],
+  },
 });
 
 export default mongoose.model("Hostel", HostelSchema);

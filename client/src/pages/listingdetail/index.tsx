@@ -1,11 +1,14 @@
 import { EmblaOptionsType } from "embla-carousel-react";
-
 import { StarIcon } from "@heroicons/react/20/solid";
-
 import EmblaCarousel from "../../components/EmblaCarousel";
 import useFetch, { Data } from "../../hooks/useFetch";
 import { useLocation } from "react-router-dom";
-
+import { useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../context/userContext";
+import axios from "axios";
+import { User } from "../dashboard/index";
+import toast from "react-hot-toast";
 const product = {
   name: "Basic Tee 6-Pack",
   price: "$192",
@@ -104,6 +107,7 @@ function classNames(...classes: any[]) {
 }
 
 export default function ListingDetailPage() {
+  const navigate = useNavigate();
   const location = useLocation();
   const path = location.pathname.split("/")[2];
 
@@ -112,6 +116,16 @@ export default function ListingDetailPage() {
   );
   // @ts-ignore
   const product: Data = datas && datas.data;
+
+  useEffect(
+    () => {
+      // Your useEffect logic...
+      // For example, you might want to check user authentication here
+    },
+    [
+      /* Add dependencies if needed */
+    ]
+  );
 
   if (loading)
     return (
@@ -138,11 +152,44 @@ export default function ListingDetailPage() {
   const images: string[] = product && product.photos.map((image) => image);
 
   const imageByIndex = (index: number): string => images[index % images.length];
-  // add breadcrumbs
+
+  // Add breadcrumbs
   const breadcrumbs = [
     { id: 1, name: "Home", href: "/" },
     { id: 2, name: "All Listings", href: "/listings" },
   ];
+
+  const { user } = useContext(UserContext);
+
+  // Handle booking to backend
+  const handleBooking = async (event: any) => {
+    event.preventDefault();
+    try {
+      // Check if user is logged in
+      if (!user)
+        return (
+          toast.error("Please login to book this hostel"), navigate("/login")
+        );
+
+      const userdata: User = user;
+
+      const data = {
+        hostelId: product._id,
+        userId: userdata.data.id,
+      };
+
+      toast.success("Booking successful");
+
+      // book/:hostelId/:userId
+
+      const res = await axios.post(
+        `/hostels/book/${product._id}/${userdata.data.id}`
+      );
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="bg-white">
       <main className="pt-10 sm:pt-16">
@@ -278,6 +325,7 @@ export default function ListingDetailPage() {
             <form className="mt-10">
               <button
                 type="submit"
+                onClick={handleBooking}
                 className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               >
                 Reserve or Book Now

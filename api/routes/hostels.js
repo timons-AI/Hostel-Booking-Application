@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  bookHostelById,
   countyByCity,
   createHostel,
   deleteHostel,
@@ -7,7 +8,7 @@ import {
   getHostels,
   updateHostel,
 } from "../controllers/hostel.js";
-import { verifyAdmin } from "../utils/verify-token.js";
+import { verifyAdmin, verifyToken } from "../utils/verify-token.js";
 
 const router = express.Router();
 
@@ -25,5 +26,8 @@ router.get("/", getHostels);
 router.get("/", getHostels);
 router.get("/countByCity", countyByCity);
 router.get("/countByType", getHostels);
+
+// book hostel by id
+router.post("/book/:hostelId/:userId", verifyToken, bookHostelById);
 
 export default router;
