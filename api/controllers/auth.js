@@ -4,34 +4,61 @@ import jwt from "jsonwebtoken";
 
 export const register = async (req, res, next) => {
   try {
-    const salt = bycrypt.genSaltSync(10);
-    const hash = bycrypt.hashSync(req.body.password, salt);
+    // Check if email already exists
+    const existingEmail = await User.findOne({ email: req.body.email });
+    if (existingEmail) {
+      return res.json({ error: "Email already exists use another email" });
+    }
 
+    // Check if user already exists
+    const existingUser = await User.findOne({ username: req.body.username });
+    if (existingUser) {
+      return res.json({ error: "User already exists, use another username" });
+    }
+
+    // Hash password
+    const salt = await bycrypt.genSalt(10);
+    const hashedPassword = await bycrypt.hashSync(req.body.password, salt);
+
+    // Create new user
     const newUser = new User({
       username: req.body.username,
       email: req.body.email,
-      password: hash,
+      password: hashedPassword,
     });
-    const user = await newUser.save();
-    res.status(201).json(user);
+    const savedUser = await newUser.save();
+
+    res.status(200).json(savedUser);
   } catch (error) {
+    // Handle error
     next(error);
   }
 };
 
+// const salt = bycrypt.genSaltSync(10);
+//     const hash = bycrypt.hashSync(req.body.password, salt);
+
+//     const newUser = new User({
+//       username: req.body.username,
+//       email: req.body.email,
+//       password: hash,
+//     });
+//     const user = await newUser.save();
+//     res.status(201).json(user);
+
 export const login = async (req, res, next) => {
   try {
-    const user = await User.findOne({ username: req.body.username }).select(
+    const user = await User.findOne({ email: req.body.email }).select(
       "+password"
     );
-    !user && res.status(400).json("Wrong credentials");
-    console.log(user);
+    if (!user) {
+      return res.status.json("Wrong credentials");
+    }
 
-    const validated = await bycrypt.compareSync(
-      req.body.password,
-      user.password
-    );
-    !validated && res.status(400).json("Wrong credentials");
+    const validated = await bycrypt.compare(req.body.password, user.password);
+    if (!validated) {
+      return res.status.json("Wrong credentials");
+    }
 
     const accessToken = jwt.sign(
       { id: user._id, isAdmin: user.isAdmin },
