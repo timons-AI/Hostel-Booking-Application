@@ -1,14 +1,19 @@
 import React, { useState } from "react";
+
+// Component for filtering and searching listings
 export default function FilterSection() {
+  // State to manage filter options
   const [filters, setFilters] = useState({
     category: "all",
     condition: "all",
     price: "all",
     location: "all",
   });
+
   return (
-    <div className=" w-full border rounded-md flex flex-col p-3">
-      <p className=" text-3xl font-bold">Search and Filter</p>
+    <div className="w-full border rounded-md flex flex-col p-3">
+      {/* Search Section */}
+      <p className="text-3xl font-bold">Search and Filter</p>
       <div className="flex flex-col mt-2">
         <label className="text-lg font-semibold">Search</label>
         <input
@@ -21,10 +26,11 @@ export default function FilterSection() {
         </button>
       </div>
 
-      {/* Filter part  */}
-
+      {/* Filter Section */}
       <div className="flex flex-col mt-2">
         <label className="text-lg font-semibold">Filter</label>
+
+        {/* Category Filter */}
         <div className="flex flex-col mt-2">
           <label className="text-lg font-semibold">Category</label>
           <select className="border rounded-md p-2">
@@ -35,6 +41,8 @@ export default function FilterSection() {
             <option value="clothing">Clothing</option>
           </select>
         </div>
+
+        {/* Condition Filter */}
         <div className="flex flex-col mt-2">
           <label className="text-lg font-semibold">Condition</label>
           <select className="border rounded-md p-2" defaultValue="all">
@@ -43,6 +51,8 @@ export default function FilterSection() {
             <option value="used">Used</option>
           </select>
         </div>
+
+        {/* Price Filter */}
         <div className="flex flex-col mt-2">
           <label className="text-lg font-semibold">Price</label>
           <select className="border rounded-md p-2">
@@ -53,6 +63,8 @@ export default function FilterSection() {
             <option value="1000+">1000+</option>
           </select>
         </div>
+
+        {/* Location Filter */}
         <div className="flex flex-col mt-2">
           <label className="text-lg font-semibold">Location</label>
           <select className="border rounded-md p-2">
@@ -61,6 +73,8 @@ export default function FilterSection() {
             <option value="used">Used</option>
           </select>
         </div>
+
+        {/* Filter Button */}
         <button className="bg-blue-500 text-white rounded-md p-2 mt-2">
           Filter
         </button>
