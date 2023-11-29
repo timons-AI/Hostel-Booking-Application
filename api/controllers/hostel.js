@@ -66,8 +66,8 @@ export const getHostels = async (req, res, next) => {
       hostels = await Hostel.find({ type: type });
     } else if (name) {
       hostels = await Hostel.find({ name: name });
-    } else if (rating) {
-      hostels = await Hostel.find({ rating: { $gte: rating } });
+    } else if (ratings) {
+      hostels = await Hostel.find({ rating: { $gte: ratings } });
     } else if (featured) {
       hostels = await Hostel.find({ featured: true });
     } else {
