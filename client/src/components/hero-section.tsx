@@ -29,7 +29,7 @@ export default function HeroSection() {
               with ease.
             </p>
             <div className="mt-10 flex items-center gap-x-6">
-              <SearchBar />
+              {/* <SearchBar /> */}
             </div>
           </div>
         </div>

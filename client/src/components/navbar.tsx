@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon,  XMarkIcon } from "@heroicons/react/24/outline";
 
 const navigation = [
   { name: "Home", href: "/", current: false },
@@ -11,7 +11,7 @@ const navigation = [
 ];
 
 function classNames(...classes: any[]) {
-  return classes.filter(Boolean).join(" ");
+return classes.filter(Boolean).join(" ");
 }
 
 export default function Navbar() {
