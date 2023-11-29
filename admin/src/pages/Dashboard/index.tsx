@@ -1,8 +1,18 @@
 import clsx from "clsx";
 import Lucide from "../../base-components/Lucide";
 import Tippy from "../../base-components/Tippy";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 function Main() {
+  const [data, setData] = useState<any>(null);
+  useEffect(() => {
+    axios.get("/admin/statistics").then((res) => {
+      setData(res.data);
+    });
+  }, []);
+  console.log(data);
+
   return (
     <>
       <div className="flex items-center mt-8 intro-y">
@@ -44,7 +54,9 @@ function Main() {
                     </Tippy>
                   </div>
                 </div>
-                <div className="mt-6 text-3xl font-medium leading-8">13</div>
+                <div className="mt-6 text-3xl font-medium leading-8">
+                  {data?.data.hostels}
+                </div>
                 <div className="mt-1 text-base text-slate-500">Locations </div>
               </div>
             </div>
@@ -73,7 +85,9 @@ function Main() {
                     </Tippy>
                   </div>
                 </div>
-                <div className="mt-6 text-3xl font-medium leading-8">57</div>
+                <div className="mt-6 text-3xl font-medium leading-8">
+                  {data?.data.bookings}
+                </div>
                 <div className="mt-1 text-base text-slate-500">
                   New Bookings
                 </div>
@@ -103,7 +117,9 @@ function Main() {
                     </Tippy>
                   </div>
                 </div>
-                <div className="mt-6 text-3xl font-medium leading-8">22</div>
+                <div className="mt-6 text-3xl font-medium leading-8">
+                  {data?.data.remaining}
+                </div>
                 <div className="mt-1 text-base text-slate-500">
                   Remaing Rooms
                 </div>
@@ -133,10 +149,10 @@ function Main() {
                     </Tippy>
                   </div>
                 </div>
-                <div className="mt-6 text-3xl font-medium leading-8">152</div>
-                <div className="mt-1 text-base text-slate-500">
-                  Unique Visitor
+                <div className="mt-6 text-3xl font-medium leading-8">
+                  {data?.data.users}
                 </div>
+                <div className="mt-1 text-base text-slate-500">Users</div>
               </div>
             </div>
           </div>

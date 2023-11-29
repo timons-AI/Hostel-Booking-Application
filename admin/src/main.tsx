@@ -5,6 +5,10 @@ import { Provider } from "react-redux";
 import { store } from "./stores/store";
 import Router from "./router";
 import "./assets/css/app.css";
+import axios from "axios";
+
+axios.defaults.baseURL = "http://localhost:3000/api";
+axios.defaults.withCredentials = true;
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <BrowserRouter>

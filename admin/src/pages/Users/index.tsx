@@ -4,9 +4,48 @@ import Button from "../../base-components/Button";
 import Pagination from "../../base-components/Pagination";
 import { FormInput, FormSelect } from "../../base-components/Form";
 import Lucide from "../../base-components/Lucide";
-import { Menu } from "../../base-components/Headless";
+import { Dialog, Menu } from "../../base-components/Headless";
+import { useEffect, useRef, useState } from "react";
+import axios from "axios";
+import { User } from "lucide-react";
+import Notification from "../../base-components/Notification";
+import toast from "react-hot-toast";
+
+export type User = {
+  _id: string;
+  username: string;
+  email: string;
+  isAdmin: boolean;
+  updatedAt: string;
+  createdAt: string;
+};
 
 function Main() {
+  const [deleteModalPreview, setDeleteModalPreview] = useState(false);
+  const deleteButtonRef = useRef(null);
+
+  const [data, setData] = useState<any>(null);
+  useEffect(() => {
+    axios.get("/admin/users").then((res) => {
+      setData(res.data);
+    });
+  }, []);
+  if (!data) {
+    return <>Loading please wait </>;
+  }
+  const users: User[] = data.data;
+  console.log(data);
+
+  const handleDelete = async (id: string) => {
+    // axios.delete(`/admin/users/${id}`).then((res) => {
+    //   console.log(res);
+    // });<div className="text-center">
+    toast.success("this is working ");
+    axios.delete(`/admin/users/${id}`).then((res) => {
+      console.log(res);
+    });
+  };
+
   return (
     <>
       <h2 className="mt-10 text-lg font-medium intro-y">Users Layout</h2>
@@ -51,32 +90,92 @@ function Main() {
           </div> */}
         </div>
         {/* BEGIN: Users Layout */}
-        {_.take(fakerData, 10).map((faker, fakerKey) => (
-          <div key={fakerKey} className="col-span-12 intro-y md:col-span-6">
+        {_.take(users, 10).map((user, userKey) => (
+          <div key={userKey} className="col-span-12 intro-y md:col-span-6">
             <div className="box">
               <div className="flex flex-col items-center p-5 lg:flex-row">
                 <div className="w-24 h-24 lg:w-12 lg:h-12 image-fit lg:mr-1">
-                  <img
-                    alt="Midone Tailwind HTML Admin Template"
+                  {/* <img
+                    alt="Will be added in future version"
                     className="rounded-full"
-                    src={faker.photos[0]}
-                  />
+                    src={user.photos[0]}
+                  /> */}
+                  <User className=" w-full h-full rounded-full" />
                 </div>
                 <div className="mt-3 text-center lg:ml-2 lg:mr-auto lg:text-left lg:mt-0">
                   <a href="" className="font-medium">
-                    {faker.users[0].name}
+                    {user.username}
                   </a>
                   <div className="text-slate-500 text-xs mt-0.5">
-                    {faker.jobs[0]}
+                    {user.email}
                   </div>
                 </div>
                 <div className="flex mt-4 lg:mt-0">
                   {/* <Button variant="primary" className="px-2 py-1 mr-2">
                     Message
                   </Button> */}
-                  <Button variant="outline-secondary" className="px-2 py-1">
-                    Profile
-                  </Button>
+                  {/* <Button variant="outline-secondary" className="px-2 py-1">
+                    Delete
+                  </Button> */}
+                  {/* BEGIN: Modal Toggle */}
+                  <div className="text-center">
+                    <Button
+                      as="a"
+                      href="#"
+                      variant="primary"
+                      onClick={(event: React.MouseEvent) => {
+                        event.preventDefault();
+                        handleDelete(user._id);
+                        setDeleteModalPreview(true);
+                      }}
+                    >
+                      Delete
+                    </Button>
+                  </div>
+                  {/* END: Modal Toggle */}
+                  {/* BEGIN: Modal Content */}
+                  <Dialog
+                    open={deleteModalPreview}
+                    onClose={() => {
+                      setDeleteModalPreview(false);
+                    }}
+                    initialFocus={deleteButtonRef}
+                  >
+                    <Dialog.Panel>
+                      <div className="p-5 text-center">
+                        <Lucide
+                          icon="XCircle"
+                          className="w-16 h-16 mx-auto mt-3 text-danger"
+                        />
+                        <div className="mt-5 text-3xl">Are you sure?</div>
+                        <div className="mt-2 text-slate-500">
+                          Do you really want to delete these records? <br />
+                          This process cannot be undone.
+                        </div>
+                      </div>
+                      <div className="px-5 pb-8 text-center">
+                        <Button
+                          type="button"
+                          variant="outline-secondary"
+                          onClick={() => {
+                            setDeleteModalPreview(false);
+                          }}
+                          className="w-24 mr-1"
+                        >
+                          Cancel
+                        </Button>
+                        <Button
+                          type="button"
+                          variant="danger"
+                          className="w-24"
+                          ref={deleteButtonRef}
+                        >
+                          Delete
+                        </Button>
+                      </div>
+                    </Dialog.Panel>
+                  </Dialog>
+                  {/* END: Modal Content */}
                 </div>
               </div>
             </div>
