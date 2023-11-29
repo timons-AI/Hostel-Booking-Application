@@ -175,33 +175,7 @@ function Main() {
                       )}
                     </div>
                     
-                    <div className="mt-3 input-form">
-                      <FormLabel
-                        htmlFor="validation-form-5"
-                        className="flex flex-col w-full sm:flex-row"
-                      >
-                        Profile URL
-                        <span className="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">
-                          Optional, URL format
-                        </span>
-                      </FormLabel>
-                      <FormInput
-                        {...register("url")}
-                        id="validation-form-5"
-                        type="text"
-                        name="url"
-                        className={clsx({
-                          "border-danger": errors.url,
-                        })}
-                        placeholder="https://google.com"
-                      />
-                      {errors.url && (
-                        <div className="mt-2 text-danger">
-                          {typeof errors.url.message === "string" &&
-                            errors.url.message}
-                        </div>
-                      )}
-                    </div>
+                    
                     <div className="mt-3 input-form">
                       <FormLabel
                         htmlFor="validation-form-6"
