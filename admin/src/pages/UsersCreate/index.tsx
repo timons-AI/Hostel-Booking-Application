@@ -174,33 +174,7 @@ function Main() {
                         </div>
                       )}
                     </div>
-                    <div className="mt-3 input-form">
-                      <FormLabel
-                        htmlFor="validation-form-4"
-                        className="flex flex-col w-full sm:flex-row"
-                      >
-                        Age
-                        <span className="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">
-                          Required, integer only & maximum 3 characters
-                        </span>
-                      </FormLabel>
-                      <FormInput
-                        {...register("age")}
-                        id="validation-form-4"
-                        type="number"
-                        name="age"
-                        className={clsx({
-                          "border-danger": errors.age,
-                        })}
-                        placeholder="21"
-                      />
-                      {errors.age && (
-                        <div className="mt-2 text-danger">
-                          {typeof errors.age.message === "string" &&
-                            errors.age.message}
-                        </div>
-                      )}
-                    </div>
+                    
                     <div className="mt-3 input-form">
                       <FormLabel
                         htmlFor="validation-form-5"
