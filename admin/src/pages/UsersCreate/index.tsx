@@ -176,32 +176,7 @@ function Main() {
                     </div>
                     
                     
-                    <div className="mt-3 input-form">
-                      <FormLabel
-                        htmlFor="validation-form-6"
-                        className="flex flex-col w-full sm:flex-row"
-                      >
-                        Comment
-                        <span className="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">
-                          Required, at least 10 characters
-                        </span>
-                      </FormLabel>
-                      <FormTextarea
-                        {...register("comment")}
-                        id="validation-form-6"
-                        name="comment"
-                        className={clsx({
-                          "border-danger": errors.comment,
-                        })}
-                        placeholder="Type your comments"
-                      ></FormTextarea>
-                      {errors.comment && (
-                        <div className="mt-2 text-danger">
-                          {typeof errors.comment.message === "string" &&
-                            errors.comment.message}
-                        </div>
-                      )}
-                    </div>
+                  
                     <Button variant="primary" type="submit" className="mt-5">
                       Register
                     </Button>
