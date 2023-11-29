@@ -173,19 +173,18 @@ export default function ListingDetailPage() {
 
       const userdata: User = user;
 
-      const data = {
-        hostelId: product._id,
-        userId: userdata.data.id,
-      };
-
-      toast.success("Booking successful");
-
       // book/:hostelId/:userId
 
       const res = await axios.post(
         `/hostels/book/${product._id}/${userdata.data.id}`
       );
-      console.log(res);
+      if (res.data.success) {
+        toast.success("Booking successful");
+      }
+
+      if (res.data.error) {
+        toast.error(res.data.error);
+      }
     } catch (error) {
       console.log(error);
     }

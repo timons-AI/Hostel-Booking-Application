@@ -5,6 +5,7 @@ import authRoute from "./routes/auth.js";
 import usersRoute from "./routes/users.js";
 import roomsRoute from "./routes/rooms.js";
 import hostelsRoute from "./routes/hostels.js";
+import adminRoute from "./routes/admin.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
@@ -32,7 +33,7 @@ mongoose.connection.on("connected", () => {
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173", "http://localhost:5174"],
   })
 );
 app.use(cookieParser());
@@ -42,6 +43,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/users", usersRoute);
 app.use("/api/rooms", roomsRoute);
 app.use("/api/hostels", hostelsRoute);
+app.use("/api/admin", adminRoute);
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
