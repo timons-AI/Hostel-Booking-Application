@@ -5,17 +5,23 @@ import { PlusIcon } from "@heroicons/react/20/solid";
 import FilterSection from "./components/filter-search";
 import useFetch, { Data } from "../../hooks/useFetch";
 
+// Breadcrumb data for navigation
 const breadcrumbs = [
   { id: 1, name: "Home", href: "/" },
   { id: 2, name: "All Listings", href: "/listings" },
 ];
 
+// Component for the ListingPage
 export default function ListingPage() {
+  // State for managing mobile filter dialog visibility
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+
+  // Fetch data using custom hook
   const { datas, loading, error } = useFetch(
     "http://localhost:3000/api/hostels"
   );
 
+  // Extracting listings from fetched data
   const listings = datas && (datas.data as Data[]);
 
   return (
@@ -28,6 +34,7 @@ export default function ListingPage() {
             className="relative z-40 lg:hidden"
             onClose={setMobileFiltersOpen}
           >
+            {/* Overlay for mobile filter dialog */}
             <Transition.Child
               as={Fragment}
               enter="transition-opacity ease-linear duration-300"
@@ -40,6 +47,7 @@ export default function ListingPage() {
               <div className="fixed inset-0 bg-black bg-opacity-25" />
             </Transition.Child>
 
+            {/* Mobile filter dialog content */}
             <div className="fixed inset-0 z-40 flex">
               <Transition.Child
                 as={Fragment}
@@ -72,7 +80,9 @@ export default function ListingPage() {
           </Dialog>
         </Transition.Root>
 
+        {/* Main content of the page */}
         <main className="mx-auto max-w-2xl px-4 lg:max-w-7xl lg:px-8">
+          {/* Breadcrumbs for navigation */}
           <nav aria-label="Breadcrumb ">
             <ol
               role="list"
@@ -103,6 +113,8 @@ export default function ListingPage() {
               ))}
             </ol>
           </nav>
+
+          {/* Header section with title and description */}
           <div className="border-b border-gray-200 pt-24 pb-10">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900">
               View All available listings
@@ -113,10 +125,13 @@ export default function ListingPage() {
             </p>
           </div>
 
+          {/* Main content grid */}
           <div className="pt-12 pb-24 lg:grid lg:grid-cols-3 lg:gap-x-8 xl:grid-cols-4 ">
+            {/* Sidebar for filters (hidden on lg and larger screens) */}
             <aside>
               <h2 className="sr-only">Filters</h2>
 
+              {/* Mobile filter button (visible only on lg and larger screens) */}
               <button
                 type="button"
                 className="inline-flex items-center lg:hidden"
@@ -131,25 +146,28 @@ export default function ListingPage() {
                 />
               </button>
 
+              {/* FilterSection component (visible on lg and larger screens) */}
               <div className="hidden lg:block ">
                 <FilterSection />
               </div>
             </aside>
 
+            {/* Main content section with listings */}
             <section
               aria-labelledby="product-heading"
               className="mt-6 lg:col-span-2 lg:mt-0 xl:col-span-3"
             >
               <h2 id="product-heading" className="sr-only">
-                listings
+                Listings
               </h2>
 
+              {/* Grid of listings */}
               <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8 ">
                 {listings ? (
                   listings.map((listing) => (
                     <div
                       key={listing._id}
-                      className=" rounded-md flex overflow-hidden  border h-48 w-full"
+                      className="rounded-md flex overflow-hidden  border h-48 w-full"
                     >
                       <div className="flex flex-col w-52 border-r ">
                         <img
@@ -184,7 +202,7 @@ export default function ListingPage() {
                           </div>
                           <a href={`/listings/${listing._id}`}>
                             <button className="bg-sky-800 text-white bottom rounded-sm m-2 text-xs p-2">
-                              See avaibility
+                              See availability
                             </button>
                           </a>
                         </div>
@@ -192,6 +210,7 @@ export default function ListingPage() {
                     </div>
                   ))
                 ) : (
+                  /* Loading spinner when data is being fetched */
                   <div className="flex justify-center items-center w-full h-full">
                     <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
                   </div>
