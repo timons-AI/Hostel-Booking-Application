@@ -1,7 +1,14 @@
+// Import necessary React components and hooks
+import React from "react";
+
+// Define the CategorySection functional component
 const CategorySection = () => {
   return (
+    // Section for viewing hostels by category
     <section aria-labelledby="category-heading" className="bg-gray-50 w-full">
+      {/* Container for content */}
       <div className="mx-auto max-w-7xl py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
+        {/* Header with category title and "Browse all categories" link */}
         <div className="sm:flex sm:items-baseline sm:justify-between">
           <h2
             id="category-heading"
@@ -18,7 +25,9 @@ const CategorySection = () => {
           </a>
         </div>
 
+        {/* Grid layout for category cards */}
         <div className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:grid-rows-2 sm:gap-x-6 lg:gap-8">
+          {/* Category card for "New Hostels" */}
           <div className="group aspect-w-2 aspect-h-1 overflow-hidden rounded-lg sm:aspect-h-1 sm:aspect-w-1 sm:row-span-2">
             <img
               src="https://images.unsplash.com/photo-1596276020587-8044fe049813?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8aG9zdGVsfGVufDB8fDB8fHww"
@@ -38,11 +47,13 @@ const CategorySection = () => {
                   </a>
                 </h3>
                 <p aria-hidden="true" className="mt-1 text-sm text-white">
-                  What are the new hostels in the city ?
+                  What are the new hostels in the city?
                 </p>
               </div>
             </div>
           </div>
+
+          {/* Category card for "Amenities & Services" */}
           <div className="group aspect-w-2 aspect-h-1 overflow-hidden rounded-lg sm:aspect-none sm:relative sm:h-full">
             <img
               src="https://images.unsplash.com/photo-1462826303086-329426d1aef5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGJlZCUyMHJvb20lMjBzaGFyZWR8ZW58MHx8MHx8fDA%3D"
@@ -58,15 +69,17 @@ const CategorySection = () => {
                 <h3 className="font-semibold text-white">
                   <a href="#">
                     <span className="absolute inset-0" />
-                    Ammenities & Services
+                    Amenities & Services
                   </a>
                 </h3>
                 <p aria-hidden="true" className="mt-1 text-sm text-white">
-                  Check which have the best wifi , breakfast and more ...
+                  Check which hostels have the best wifi, breakfast, and more...
                 </p>
               </div>
             </div>
           </div>
+
+          {/* Category card for "Space" */}
           <div className="group aspect-w-2 aspect-h-1 overflow-hidden rounded-lg sm:aspect-none sm:relative sm:h-full">
             <img
               src="https://images.unsplash.com/photo-1562184552-b7a1069700fa?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cm9vbSUyMHNwYWNlfGVufDB8fDB8fHww"
@@ -86,13 +99,14 @@ const CategorySection = () => {
                   </a>
                 </h3>
                 <p aria-hidden="true" className="mt-1 text-sm text-white">
-                  How many people can stay in a room ?
+                  How many people can stay in a room?
                 </p>
               </div>
             </div>
           </div>
         </div>
 
+        {/* "Browse all categories" link for small screens */}
         <div className="mt-6 sm:hidden">
           <a
             href="#"
@@ -107,4 +121,5 @@ const CategorySection = () => {
   );
 };
 
+// Export the CategorySection component
 export default CategorySection;
