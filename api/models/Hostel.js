@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
-const HostelSchema = new mongoose.Schema({
+const HostelSchema = new mongoose.Schema(
+  {
   name: {
     type: String,
     required: true,
@@ -49,7 +50,8 @@ const HostelSchema = new mongoose.Schema({
   bookings: {
     type: [String],
   },
-});
+}
+);
 
 export default mongoose.model("Hostel", HostelSchema);
 
