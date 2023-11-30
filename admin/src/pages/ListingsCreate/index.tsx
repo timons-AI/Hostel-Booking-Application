@@ -300,7 +300,7 @@ function Main() {
                   <FormLabel className="xl:w-64 xl:!mr-10">
                     <div className="text-left">
                       <div className="flex items-center">
-                        <div className="font-medium">Product Stock</div>
+                        <div className="font-medium">Room Vacancies</div>
                         <div className="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
                           Required
                         </div>
@@ -309,9 +309,9 @@ function Main() {
                   </FormLabel>
                   <div className="flex-1 w-full mt-3 xl:mt-0">
                     <FormInput
-                      id="product-stock"
+                      id="Room-vacancies"
                       type="text"
-                      placeholder="Input Product Stock"
+                      placeholder="Input available vacant rooms"
                     />
                   </div>
                 </FormInline>
