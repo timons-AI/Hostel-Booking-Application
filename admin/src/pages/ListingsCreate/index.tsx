@@ -214,12 +214,12 @@ function Main() {
               </div>
             </div>
           </div>
-          {/* END: Product Information */}
-          {/* BEGIN: Product Detail */}
+          {/* END: Hostel Information */}
+          {/* BEGIN: Hostel Detail */}
           <div className="p-5 mt-5 intro-y box">
             <div className="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400">
               <div className="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
-                <Lucide icon="ChevronDown" className="w-4 h-4 mr-2" /> Listing
+                <Lucide icon="ChevronDown" className="w-4 h-4 mr-2" /> Hostel Listing
                 Detail
               </div>
               <div className="mt-5">
@@ -227,16 +227,16 @@ function Main() {
                   <FormLabel className="xl:w-64 xl:!mr-10">
                     <div className="text-left">
                       <div className="flex items-center">
-                        <div className="font-medium">Product Description</div>
+                        <div className="font-medium">Hostel Description</div>
                         <div className="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
                           Required
                         </div>
                       </div>
                       <div className="mt-3 text-xs leading-relaxed text-slate-500">
                         <div>
-                          Make sure the product description provides a detailed
-                          explanation of your product so that it is easy to
-                          understand and find your product.
+                          Make sure the Hostel description provides a detailed clear
+                          explanation of your hostel so that it is easy to
+                          understand and find your hostel.
                         </div>
                         <div className="mt-2">
                           It is recommended not to enter info on mobile numbers,
