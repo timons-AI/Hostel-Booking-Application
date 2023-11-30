@@ -175,7 +175,7 @@ function Main() {
                       <div className="mt-3 text-xs leading-relaxed text-slate-500">
                         Include a min. 40 characters to make it more traceable, attractive and easy to remember
                        consisting of hostel type (boys' or girls'), Location, 
-                        and information such as if it has a coaster, pricing and contact information
+                        and information such as if it has a coaster, pricing and non-private contact information
                       </div>
                     </div>
                   </FormLabel>
@@ -240,7 +240,7 @@ function Main() {
                         </div>
                         <div className="mt-2">
                           It is recommended not to enter info on mobile numbers,
-                          e-mails, etc. into the product description to protect
+                          e-mails, etc. into the Hostel description to protect
                           your personal data.
                         </div>
                       </div>
@@ -259,13 +259,13 @@ function Main() {
               </div>
             </div>
           </div>
-          {/* END: Product Detail */}
+          {/* END: Hostel Detail */}
 
-          {/* BEGIN: Product Management */}
+          {/* BEGIN: Hostel Booking Management */}
           <div className="p-5 mt-5 intro-y box">
             <div className="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400">
               <div className="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
-                <Lucide icon="ChevronDown" className="w-4 h-4 mr-2" /> Product
+                <Lucide icon="ChevronDown" className="w-4 h-4 mr-2" /> Hostel Booking
                 Management
               </div>
               <div className="mt-5">
@@ -273,24 +273,24 @@ function Main() {
                   <FormLabel className="xl:w-64 xl:!mr-10">
                     <div className="text-left">
                       <div className="flex items-center">
-                        <div className="font-medium">Product Status</div>
+                        <div className="font-medium">Hostel Status</div>
                         <div className="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
                           Required
                         </div>
                       </div>
                       <div className="mt-3 text-xs leading-relaxed text-slate-500">
-                        If the status is active, your product can be searched
-                        for by potential buyers.
+                        If the status is active, your hostel can be searched
+                        for and eventually booked by students or clients.
                       </div>
                     </div>
                   </FormLabel>
                   <div className="flex-1 w-full mt-3 xl:mt-0">
                     <FormSwitch>
                       <FormSwitch.Input
-                        id="product-status-active"
+                        id="Hostel-status-active"
                         type="checkbox"
                       />
-                      <FormSwitch.Label htmlFor="product-status-active">
+                      <FormSwitch.Label htmlFor="Hostel-status-active">
                         Active
                       </FormSwitch.Label>
                     </FormSwitch>
