@@ -181,9 +181,9 @@ function Main() {
                   </FormLabel>
                   <div className="flex-1 w-full mt-3 xl:mt-0">
                     <FormInput
-                      id="product-name"
+                      id="Hostel-name"
                       type="text"
-                      placeholder="Product name"
+                      placeholder="Hostel name"
                     />
                     <FormHelp className="text-right">
                       Maximum character 0/70
