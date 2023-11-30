@@ -26,7 +26,7 @@ function Main() {
   return (
     <>
       <div className="flex items-center mt-8 intro-y">
-        <h2 className="mr-auto text-lg font-medium">Add Product</h2>
+        <h2 className="mr-auto text-lg font-medium">Add Hostel</h2>
       </div>
       <div className="grid grid-cols-11 pb-20 mt-5 gap-x-6">
         {/* BEGIN: Notification */}
