@@ -159,8 +159,8 @@ function Main() {
           <div className="p-5 mt-5 intro-y box">
             <div className="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400">
               <div className="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
-                <Lucide icon="ChevronDown" className="w-4 h-4 mr-2" /> Product
-                Information
+                <Lucide icon="ChevronDown" className="w-4 h-4 mr-2" /> Hostel Details
+                
               </div>
               <div className="mt-5">
                 <FormInline className="flex-col items-start pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
