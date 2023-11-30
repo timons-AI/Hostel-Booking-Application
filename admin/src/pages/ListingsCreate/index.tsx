@@ -159,7 +159,7 @@ function Main() {
           <div className="p-5 mt-5 intro-y box">
             <div className="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400">
               <div className="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
-                <Lucide icon="ChevronDown" className="w-4 h-4 mr-2" /> Hostel Details
+                <Lucide icon="ChevronDown" className="w-4 h-4 mr-2" /> Hostel Information
                 
               </div>
               <div className="mt-5">
