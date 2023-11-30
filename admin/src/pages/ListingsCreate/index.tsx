@@ -42,7 +42,7 @@ function Main() {
                   <Lucide icon="Info" className="w-4 h-4 mr-2" />
                 </span>
                 <span>
-                  Starting May 10, 2021, there will be changes to the Terms &
+                  Starting each semester, there will be changes to the Terms &
                   Conditions regarding the number of listings that may be added
                   by the Seller.
                   <a
