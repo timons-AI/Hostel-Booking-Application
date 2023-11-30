@@ -167,15 +167,15 @@ function Main() {
                   <FormLabel className="xl:w-64 xl:!mr-10">
                     <div className="text-left">
                       <div className="flex items-center">
-                        <div className="font-medium">Product Name</div>
+                        <div className="font-medium">Hostel Name</div>
                         <div className="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
                           Required
                         </div>
                       </div>
                       <div className="mt-3 text-xs leading-relaxed text-slate-500">
-                        Include min. 40 characters to make it more attractive
-                        and easy for buyers to find, consisting of product type,
-                        brand, and information such as color, material, or type.
+                        Include a min. 40 characters to make it more traceable, attractive and easy to remember
+                       consisting of hostel type (boys' or girls'), Location, 
+                        and information such as if it has a coaster, pricing and contact information
                       </div>
                     </div>
                   </FormLabel>
