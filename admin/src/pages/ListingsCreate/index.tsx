@@ -194,7 +194,7 @@ function Main() {
                   <FormLabel className="xl:w-64 xl:!mr-10">
                     <div className="text-left">
                       <div className="flex items-center">
-                        <div className="font-medium">Category</div>
+                        <div className="font-medium">Room Categories</div>
                         <div className="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
                           Required
                         </div>
@@ -202,7 +202,7 @@ function Main() {
                     </div>
                   </FormLabel>
                   <div className="flex-1 w-full mt-3 xl:mt-0">
-                    <FormSelect id="category">
+                    <FormSelect id="Room categories">
                       {_.take(fakerData, 9).map((faker, fakerKey) => (
                         <option key={fakerKey} value={faker.categories[0].name}>
                           {faker.categories[0].name}
