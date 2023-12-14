@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const HostelSchema = new mongoose.Schema(
+const HostelSchema = new mongoose.Schema (
   {
   name: {
     type: String,
