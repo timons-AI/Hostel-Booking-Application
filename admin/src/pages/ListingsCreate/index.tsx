@@ -320,19 +320,19 @@ function Main() {
                     <div className="text-left">
                       <div className="flex items-center">
                         <div className="font-medium">
-                          SKU (Stock Keeping Unit)
+                          Hostel Code
                         </div>
                         <div className="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
                           Required
                         </div>
                       </div>
                       <div className="mt-3 text-xs leading-relaxed text-slate-500">
-                        Use a unique SKU code if you want to mark your product.
+                        Use a unique Hostel code if you want to mark your hostel.
                       </div>
                     </div>
                   </FormLabel>
                   <div className="flex-1 w-full mt-3 xl:mt-0">
-                    <FormInput id="sku" type="text" placeholder="Input SKU" />
+                    <FormInput id="Hostel Code" type="text" placeholder="Input Hostel Code" />
                   </div>
                 </FormInline>
               </div>
@@ -351,7 +351,7 @@ function Main() {
               type="button"
               className="w-full py-3 border-slate-300 dark:border-darkmode-400 text-slate-500 md:w-52"
             >
-              Save & Add New Product
+              Save & Add New Hostel
             </Button>
             <Button
               variant="primary"
