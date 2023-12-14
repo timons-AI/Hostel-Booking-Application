@@ -26,7 +26,7 @@ function Main() {
   return (
     <>
       <div className="flex items-center mt-8 intro-y">
-        <h2 className="mr-auto text-lg font-medium">Add Product</h2>
+        <h2 className="mr-auto text-lg font-medium">Add Hostel</h2>
       </div>
       <div className="grid grid-cols-11 pb-20 mt-5 gap-x-6">
         {/* BEGIN: Notification */}
@@ -42,7 +42,7 @@ function Main() {
                   <Lucide icon="Info" className="w-4 h-4 mr-2" />
                 </span>
                 <span>
-                  Starting May 10, 2021, there will be changes to the Terms &
+                  Starting each semester, there will be changes to the Terms &
                   Conditions regarding the number of listings that may be added
                   by the Seller.
                   <a
@@ -159,31 +159,31 @@ function Main() {
           <div className="p-5 mt-5 intro-y box">
             <div className="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400">
               <div className="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
-                <Lucide icon="ChevronDown" className="w-4 h-4 mr-2" /> Product
-                Information
+                <Lucide icon="ChevronDown" className="w-4 h-4 mr-2" /> Hostel Information
+                
               </div>
               <div className="mt-5">
                 <FormInline className="flex-col items-start pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                   <FormLabel className="xl:w-64 xl:!mr-10">
                     <div className="text-left">
                       <div className="flex items-center">
-                        <div className="font-medium">Product Name</div>
+                        <div className="font-medium">Hostel Name</div>
                         <div className="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
                           Required
                         </div>
                       </div>
                       <div className="mt-3 text-xs leading-relaxed text-slate-500">
-                        Include min. 40 characters to make it more attractive
-                        and easy for buyers to find, consisting of product type,
-                        brand, and information such as color, material, or type.
+                        Include a min. 40 characters to make it more traceable, attractive and easy to remember
+                       consisting of hostel type (boys' or girls'), Location, 
+                        and information such as if it has a coaster, pricing and non-private contact information
                       </div>
                     </div>
                   </FormLabel>
                   <div className="flex-1 w-full mt-3 xl:mt-0">
                     <FormInput
-                      id="product-name"
+                      id="Hostel-name"
                       type="text"
-                      placeholder="Product name"
+                      placeholder="Hostel name"
                     />
                     <FormHelp className="text-right">
                       Maximum character 0/70
@@ -194,32 +194,39 @@ function Main() {
                   <FormLabel className="xl:w-64 xl:!mr-10">
                     <div className="text-left">
                       <div className="flex items-center">
-                        <div className="font-medium">Category</div>
+                        <div className="font-medium">Room Categories</div>
                         <div className="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
                           Required
                         </div>
                       </div>
                     </div>
                   </FormLabel>
-                  <div className="flex-1 w-full mt-3 xl:mt-0">
-                    <FormSelect id="category">
-                      {_.take(fakerData, 9).map((faker, fakerKey) => (
-                        <option key={fakerKey} value={faker.categories[0].name}>
-                          {faker.categories[0].name}
-                        </option>
-                      ))}
-                    </FormSelect>
-                  </div>
+                  <div className="my-4">
+  <label htmlFor="roomCategory" className="block text-sm font-medium text-gray-700">
+  </label>
+  <select
+    id="roomCategory"
+    name="roomCategory"
+    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+  >
+    <option value="single">Single</option>
+    <option value="double">Double</option>
+    <option value="triple">Triple</option>
+    <option value="quadral">Quadral</option>
+    <option value="guestHouse">Guest House (Temporary)</option>
+  </select>
+</div>
+
                 </FormInline>
               </div>
             </div>
           </div>
-          {/* END: Product Information */}
-          {/* BEGIN: Product Detail */}
+          {/* END: Hostel Information */}
+          {/* BEGIN: Hostel Detail */}
           <div className="p-5 mt-5 intro-y box">
             <div className="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400">
               <div className="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
-                <Lucide icon="ChevronDown" className="w-4 h-4 mr-2" /> Listing
+                <Lucide icon="ChevronDown" className="w-4 h-4 mr-2" /> Hostel Listing
                 Detail
               </div>
               <div className="mt-5">
@@ -227,20 +234,20 @@ function Main() {
                   <FormLabel className="xl:w-64 xl:!mr-10">
                     <div className="text-left">
                       <div className="flex items-center">
-                        <div className="font-medium">Product Description</div>
+                        <div className="font-medium">Hostel Description</div>
                         <div className="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
                           Required
                         </div>
                       </div>
                       <div className="mt-3 text-xs leading-relaxed text-slate-500">
                         <div>
-                          Make sure the product description provides a detailed
-                          explanation of your product so that it is easy to
-                          understand and find your product.
+                          Make sure the Hostel description provides a detailed clear
+                          explanation of your hostel so that it is easy to
+                          understand and find your hostel.
                         </div>
                         <div className="mt-2">
                           It is recommended not to enter info on mobile numbers,
-                          e-mails, etc. into the product description to protect
+                          e-mails, etc. into the Hostel description to protect
                           your personal data.
                         </div>
                       </div>
@@ -259,13 +266,13 @@ function Main() {
               </div>
             </div>
           </div>
-          {/* END: Product Detail */}
+          {/* END: Hostel Detail */}
 
-          {/* BEGIN: Product Management */}
+          {/* BEGIN: Hostel Booking Management */}
           <div className="p-5 mt-5 intro-y box">
             <div className="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400">
               <div className="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
-                <Lucide icon="ChevronDown" className="w-4 h-4 mr-2" /> Product
+                <Lucide icon="ChevronDown" className="w-4 h-4 mr-2" /> Hostel Booking
                 Management
               </div>
               <div className="mt-5">
@@ -273,24 +280,24 @@ function Main() {
                   <FormLabel className="xl:w-64 xl:!mr-10">
                     <div className="text-left">
                       <div className="flex items-center">
-                        <div className="font-medium">Product Status</div>
+                        <div className="font-medium">Hostel Status</div>
                         <div className="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
                           Required
                         </div>
                       </div>
                       <div className="mt-3 text-xs leading-relaxed text-slate-500">
-                        If the status is active, your product can be searched
-                        for by potential buyers.
+                        If the status is active, your hostel can be searched
+                        for and eventually booked by students or clients.
                       </div>
                     </div>
                   </FormLabel>
                   <div className="flex-1 w-full mt-3 xl:mt-0">
                     <FormSwitch>
                       <FormSwitch.Input
-                        id="product-status-active"
+                        id="Hostel-status-active"
                         type="checkbox"
                       />
-                      <FormSwitch.Label htmlFor="product-status-active">
+                      <FormSwitch.Label htmlFor="Hostel-status-active">
                         Active
                       </FormSwitch.Label>
                     </FormSwitch>
@@ -300,7 +307,7 @@ function Main() {
                   <FormLabel className="xl:w-64 xl:!mr-10">
                     <div className="text-left">
                       <div className="flex items-center">
-                        <div className="font-medium">Product Stock</div>
+                        <div className="font-medium">Room Vacancies</div>
                         <div className="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
                           Required
                         </div>
@@ -309,9 +316,9 @@ function Main() {
                   </FormLabel>
                   <div className="flex-1 w-full mt-3 xl:mt-0">
                     <FormInput
-                      id="product-stock"
+                      id="Room-vacancies"
                       type="text"
-                      placeholder="Input Product Stock"
+                      placeholder="Input available vacant rooms"
                     />
                   </div>
                 </FormInline>
@@ -320,19 +327,19 @@ function Main() {
                     <div className="text-left">
                       <div className="flex items-center">
                         <div className="font-medium">
-                          SKU (Stock Keeping Unit)
+                          Hostel Code
                         </div>
                         <div className="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
                           Required
                         </div>
                       </div>
                       <div className="mt-3 text-xs leading-relaxed text-slate-500">
-                        Use a unique SKU code if you want to mark your product.
+                        Use a unique Hostel code if you want to mark your hostel.
                       </div>
                     </div>
                   </FormLabel>
                   <div className="flex-1 w-full mt-3 xl:mt-0">
-                    <FormInput id="sku" type="text" placeholder="Input SKU" />
+                    <FormInput id="Hostel Code" type="text" placeholder="Input Hostel Code" />
                   </div>
                 </FormInline>
               </div>
@@ -351,7 +358,7 @@ function Main() {
               type="button"
               className="w-full py-3 border-slate-300 dark:border-darkmode-400 text-slate-500 md:w-52"
             >
-              Save & Add New Product
+              Save & Add New Hostel
             </Button>
             <Button
               variant="primary"
