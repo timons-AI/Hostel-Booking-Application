@@ -201,15 +201,22 @@ function Main() {
                       </div>
                     </div>
                   </FormLabel>
-                  <div className="flex-1 w-full mt-3 xl:mt-0">
-                    <FormSelect id="Room categories">
-                      {_.take(fakerData, 9).map((faker, fakerKey) => (
-                        <option key={fakerKey} value={faker.categories[0].name}>
-                          {faker.categories[0].name}
-                        </option>
-                      ))}
-                    </FormSelect>
-                  </div>
+                  <div className="my-4">
+  <label htmlFor="roomCategory" className="block text-sm font-medium text-gray-700">
+  </label>
+  <select
+    id="roomCategory"
+    name="roomCategory"
+    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+  >
+    <option value="single">Single</option>
+    <option value="double">Double</option>
+    <option value="triple">Triple</option>
+    <option value="quadral">Quadral</option>
+    <option value="guestHouse">Guest House (Temporary)</option>
+  </select>
+</div>
+
                 </FormInline>
               </div>
             </div>
