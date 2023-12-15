@@ -1,15 +1,65 @@
 import _ from "lodash";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import fakerData from "../../utils/faker";
 import Button from "../../base-components/Button";
 import Pagination from "../../base-components/Pagination";
 import { FormInput, FormSelect } from "../../base-components/Form";
 import Lucide from "../../base-components/Lucide";
 import { Dialog, Menu } from "../../base-components/Headless";
+import axios from "axios";
+
+// Define the type for the data received from the API
+type Listing = {
+  _id: string;
+  name: string;
+  type: string;
+  city: string;
+  address: string;
+  distance: string;
+  photos: string[];
+  description: string;
+  rating: number;
+  rooms: string[];
+  cheapestPrice: number;
+  featured: boolean;
+  bookings: string[];
+};
 
 function Main() {
+  const [listings, setListings] = useState<Listing[]>([]);
   const [deleteConfirmationModal, setDeleteConfirmationModal] = useState(false);
+  const [selectedListing, setSelectedListing] = useState<Listing | null>(null);
   const deleteButtonRef = useRef(null);
+
+  useEffect(() => {
+    // Fetch data from the API and update the listings state
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("/admin/listings");
+        setListings(response.data.data);
+        console.log(response.data.data);
+      } catch (error) {
+        console.error("Error fetching listings:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleDeleteListing = async () => {
+    if (selectedListing) {
+      try {
+        // await axios.delete(`/admin/listings/${selectedListing._id}`);
+        console.log("Deleted listing:", selectedListing);
+        setListings((prevListings) =>
+          prevListings.filter((listing) => listing._id !== selectedListing._id)
+        );
+        setDeleteConfirmationModal(false);
+      } catch (error) {
+        console.error("Error deleting listing:", error);
+      }
+    }
+  };
 
   return (
     <>
@@ -60,71 +110,76 @@ function Main() {
           </div> */}
         </div>
         {/* BEGIN: Users Layout */}
-        {_.take(fakerData, 12).map((faker, fakerKey) => (
-          <div
-            key={fakerKey}
-            className="col-span-12 intro-y md:col-span-6 lg:col-span-4 xl:col-span-3"
-          >
-            <div className="box">
-              <div className="p-5">
-                <div className="h-40 overflow-hidden rounded-md 2xl:h-56 image-fit before:block before:absolute before:w-full before:h-full before:top-0 before:left-0 before:z-10 before:bg-gradient-to-t before:from-black before:to-black/10">
-                  <img
-                    alt="Midone - HTML Admin Template"
-                    className="rounded-md"
-                    src={faker.images[0]}
-                  />
-                  {faker.trueFalse[0] && (
-                    <span className="absolute top-0 z-10 px-2 py-1 m-5 text-xs text-white rounded bg-pending/80">
-                      Featured
-                    </span>
-                  )}
-                  <div className="absolute bottom-0 z-10 px-5 pb-6 text-white">
-                    <a href="" className="block text-base font-medium">
-                      {faker.products[0].name}
-                    </a>
-                    <span className="mt-3 text-xs text-white/90">
-                      {faker.products[0].category}
-                    </span>
+        {listings &&
+          listings.map((listing) => (
+            <div
+              key={listing._id}
+              className="col-span-12 intro-y md:col-span-6 lg:col-span-4 xl:col-span-3"
+            >
+              <div className="box">
+                <div className="p-5">
+                  <div className="h-40 overflow-hidden rounded-md 2xl:h-56 image-fit before:block before:absolute before:w-full before:h-full before:top-0 before:left-0 before:z-10 before:bg-gradient-to-t before:from-black before:to-black/10">
+                    <img
+                      alt="Midone - HTML Admin Template"
+                      className="rounded-md"
+                      src={listing.photos[0]}
+                    />
+                    {listing.featured && (
+                      <span className="absolute top-0 z-10 px-2 py-1 m-5 text-xs text-white rounded bg-pending/80">
+                        Featured
+                      </span>
+                    )}
+                    <div className="absolute bottom-0 z-10 px-5 pb-6 text-white">
+                      <a href="" className="block text-base font-medium">
+                        {listing.name}
+                      </a>
+                      <span className="mt-3 text-xs text-white/90">
+                        {listing.type}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="mt-5 text-slate-600 dark:text-slate-500">
+                    <div className="flex items-center">
+                      <Lucide icon="Link" className="w-4 h-4 mr-2" /> Price: $
+                      {listing.cheapestPrice}
+                    </div>
+                    <div className="flex items-center mt-2">
+                      <Lucide icon="Layers" className="w-4 h-4 mr-2" />{" "}
+                      Remaining Rooms:
+                      {listing.rooms.length}
+                    </div>
+                    <div className="flex items-center mt-2">
+                      <Lucide icon="CheckSquare" className="w-4 h-4 mr-2" />{" "}
+                      Status:
+                      {listing.address === "Active" ? "Active" : "Inactive"}
+                    </div>
                   </div>
                 </div>
-                <div className="mt-5 text-slate-600 dark:text-slate-500">
-                  <div className="flex items-center">
-                    <Lucide icon="Link" className="w-4 h-4 mr-2" /> Price: $
-                    {faker.totals[0]}
-                  </div>
-                  <div className="flex items-center mt-2">
-                    <Lucide icon="Layers" className="w-4 h-4 mr-2" /> Remaining
-                    Stock:
-                    {faker.stocks[0]}
-                  </div>
-                  <div className="flex items-center mt-2">
-                    <Lucide icon="CheckSquare" className="w-4 h-4 mr-2" />{" "}
-                    Status:
-                    {faker.trueFalse[0] ? "Active" : "Inactive"}
-                  </div>
+                <div className="flex items-center justify-center p-5 border-t lg:justify-end border-slate-200/60 dark:border-darkmode-400">
+                  <a
+                    className="flex items-center mr-auto text-primary"
+                    href="#"
+                  >
+                    <Lucide icon="Eye" className="w-4 h-4 mr-1" /> Preview
+                  </a>
+                  <a className="flex items-center mr-3" href="#">
+                    <Lucide icon="CheckSquare" className="w-4 h-4 mr-1" /> Edit
+                  </a>
+                  <a
+                    className="flex items-center text-danger"
+                    href="#"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      setSelectedListing(listing);
+                      setDeleteConfirmationModal(true);
+                    }}
+                  >
+                    <Lucide icon="Trash2" className="w-4 h-4 mr-1" /> Delete
+                  </a>
                 </div>
-              </div>
-              <div className="flex items-center justify-center p-5 border-t lg:justify-end border-slate-200/60 dark:border-darkmode-400">
-                <a className="flex items-center mr-auto text-primary" href="#">
-                  <Lucide icon="Eye" className="w-4 h-4 mr-1" /> Preview
-                </a>
-                <a className="flex items-center mr-3" href="#">
-                  <Lucide icon="CheckSquare" className="w-4 h-4 mr-1" /> Edit
-                </a>
-                <a
-                  className="flex items-center text-danger"
-                  href="#"
-                  onClick={(event) => {
-                    event.preventDefault();
-                    setDeleteConfirmationModal(true);
-                  }}
-                >
-                  <Lucide icon="Trash2" className="w-4 h-4 mr-1" /> Delete
-                </a>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
         {/* END: Users Layout */}
         {/* BEGIN: Pagination */}
         <div className="flex flex-wrap items-center col-span-12 intro-y sm:flex-row sm:flex-nowrap">
@@ -192,6 +247,7 @@ function Main() {
               type="button"
               className="w-24"
               ref={deleteButtonRef}
+              onClick={handleDeleteListing}
             >
               Delete
             </Button>
