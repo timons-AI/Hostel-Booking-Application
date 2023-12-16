@@ -2,12 +2,14 @@
   "name": "enigma-react",
   "private": true,
   "version": "0.0.0",
-  "scripts": {
+  "scripts": 
+  {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
-  "dependencies": {
+  "dependencies": 
+  {
     "@ckeditor/ckeditor5-build-balloon": "^35.1.0",
     "@ckeditor/ckeditor5-build-balloon-block": "^35.1.0",
     "@ckeditor/ckeditor5-build-classic": "^35.1.0",
@@ -53,7 +55,8 @@
     "yup": "^0.32.11",
     "zoom-vanilla.js": "^2.0.6"
   },
-  "devDependencies": {
+  "devDependencies": 
+  {
     "@tailwindcss/forms": "^0.5.2",
     "@types/dropzone": "^5.7.4",
     "@types/flat": "^5.0.2",
