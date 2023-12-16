@@ -7,7 +7,7 @@ const Footer = () => {
             <div className="container mx-auto">
                 <div className="flex items-center justify-between">
                     <div>
-                        <p>&copy; 2023 HOSTEL-BOOKING-APPLICATION</p>
+                        <p>&copy; 2023 HOSTEL-BOOKING-APP</p>
                     </div>
                     <div>
                         {/* Add your social media icons or links here */}
