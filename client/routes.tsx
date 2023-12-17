@@ -16,7 +16,7 @@ export const AppRoutes: RouteProps[] = [
   {
     title: "Home",
     path: "",
-    element: <HomePage />,
+    element: < HomePage />,
   },
   {
     title: "About",
