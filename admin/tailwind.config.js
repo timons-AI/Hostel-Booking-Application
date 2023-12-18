@@ -16,7 +16,8 @@ module.exports = {
     },
   ],
   darkMode: "class",
-  theme: {
+  theme: 
+  {
     extend: {
       colors: {
         primary: "rgb(var(--color-primary) / <alpha-value>)",
