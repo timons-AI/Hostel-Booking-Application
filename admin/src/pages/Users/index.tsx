@@ -39,6 +39,7 @@ function Main() {
     try {
       // await axios.delete(`/admin/users/${id}`);
       console.log(id);
+      // set the data
       setData((prevData: any) => ({
         ...prevData,
         data: prevData.data.filter((user: User) => user._id !== id),
